@@ -29,16 +29,18 @@
 ### What will your MVP functionality be?
 
 * Server with a database filled with examples of inventory items, that the users can login to and read through.
+* We want to enable users to communicate with Administrative staff through Inquirer and Socket.io.
+* Users will send create requests with Inquirer, and send them to Admin through Socket.io. Once Admin receives those requests they will then make another request through Socket.io to a third party vendor.
 
 ### What are your stretch goals?
 
-* Our Stretch goal would be to have a search function through Enquirer on our Terminal.
+* Once Admin update inventory, Users can receive a notification of updated inventory.
 
 ## Stretch Goals
 
 ### What stretch goals are you going to aim for?
 
-* Integrating Enquirer into our project.
+* Integrating Inquirer into our project.
 
 ## Functional Requirements
 
@@ -58,3 +60,5 @@
 * Security - Accurate RBAC, we don't want all users to be able to update and delete items from the inventory.
 
 * Usability - Since we're creating a backend server we won't have any sort of a GUI but we want our application to still be fully usable, and ready to connect to a front end in the future. We're doing this by implementing Enquirer which will let us use our terminal to perform search functions.
+
+* Testing - Ensure our express server and handlers successfully pass any tests.
