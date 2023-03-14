@@ -2,6 +2,8 @@
 
 const inquirer = require('inquirer');
 
+let localUser;
+
 inquirer
   .prompt([
     {
@@ -14,19 +16,21 @@ inquirer
   .then((answer) => {
     console.log(answer.user_choice);
     if (answer.user_choice === 'Signin') {
+      clearLocalUser();
       signIn();
-      console.log('Welcome to your signin');
+      //console.log('Welcome to your signin');
     }
     else if (answer.user_choice === 'Signup') {
+      clearLocalUser();
       signUp();
-      console.log('Please enter your info to signup');
+      //console.log('Please enter your info to signup');
     }
 
   })
   .catch((error) => console.error(error));
 
 const signIn = () => {
-  let user;
+ 
   inquirer
     .prompt([
       {
@@ -41,14 +45,16 @@ const signIn = () => {
       },
     ])
     .then((answer) => {
-      user.username = answer.userName;
-      user.password = answer.password;
-      console.log(user);
+      localUser.username = answer.userName;
+      localUser.password = answer.password;
+      console.log(localUser);
+
+      
     });
 };
 
 const signUp = () => {
-  let user;
+  
   inquirer
     .prompt([
       {
@@ -57,7 +63,7 @@ const signUp = () => {
         message: 'Please enter your username',
       },
       {
-        name: 'pasword',
+        name: 'secret',
         type: 'password',
         message: 'Please enter your password',
       },
@@ -69,11 +75,21 @@ const signUp = () => {
       },
     ])
     .then((answer) => {
-      user.username = answer.userName;
-      user.password = answer.password;
-      user.role = answer.role;
-      console.log(user);
+      localUser.username = answer.userName;
+      localUser.password = answer.secret;
+      localUser.role = answer.role;
+      console.log(localUser);
+
+
     });
+};
+
+const clearLocalUser = () => {
+  localUser = {
+    username: '',
+    password: '',
+    role: '',
+  };
 };
 
 const userMenu = () => {
