@@ -2,6 +2,7 @@
 
 require('dotenv').config();
 const { Server } = require('socket.io');
+const cors = require('cors');
 const PORT = process.env.PORT || 3002;
 const Queue = require('./lib/queue');
 const messageQueue = new Queue();
@@ -12,9 +13,11 @@ const server = new Server();
 // create namespace
 const jjmr = server.of('/jjmr');
 
+server.use(cors());
+
 // create / allow for connections
 jjmr.on('connection', (socket) => {
-  console.log('connect to the jjmr namespace', socket.id);
+  console.log('Connect to the jjmr namespace', socket.id);
 
   socket.onAny((event, payload) => {
     const time = new Date();

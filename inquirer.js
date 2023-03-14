@@ -12,6 +12,7 @@ inquirer
     },
   ])
   .then((answer) => {
+    console.log(answer.user_choice);
     if (answer.user_choice === 'Signin') {
       signIn();
       console.log('Welcome to your signin');
@@ -21,7 +22,8 @@ inquirer
       console.log('Please enter your info to signup');
     }
 
-  });
+  })
+  .catch((error) => console.error(error));
 
 const signIn = () => {
   let user;
@@ -33,7 +35,7 @@ const signIn = () => {
         message: 'Please enter your username',
       },
       {
-        name: 'pasword',
+        name: 'password',
         type: 'password',
         message: 'Please enter your password',
       },
@@ -81,7 +83,7 @@ const userMenu = () => {
         name: 'menu',
         type: 'list',
         message: 'Choose a task',
-        choices: ['Search', 'Request order'],
+        choices: ['Search', 'Request order', 'Display Inventory'],
       },
     ])
     .then((answer) => {
@@ -104,25 +106,11 @@ const adminMenu = () => {
     });
 };
 
-const search = () => {};
-const Create = () => {};
-const Read = () => {};
-const Update = () => {};
-const Delete = () => {};
+// const search = () => {};
+// const Create = () => {};
+// const Read = () => {};
+// const Update = () => {};
+// const Delete = () => {};
 
 
 
-// const startInquire = () => {
-//   inquirer
-//     .prompt([
-//       {
-//         name: 'user_test',
-//         message: 'Which would you like to choose?',
-//         type: 'list',
-//         choices: ['Proof of life A', 'Proof of life B'],
-//       },
-//     ])
-//     .then((answer) => {
-//       console.log('You have chosen ' + answer.user_test);
-//     });
-// };

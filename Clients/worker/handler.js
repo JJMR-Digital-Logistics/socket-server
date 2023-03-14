@@ -4,24 +4,25 @@ const Chance = require('chance');
 
 const chance = new Chance();
 
-const partRequest = (socket, order = null) => {
-  if (!order) {
-    order = {
-      id: chance.guid(),
+const partRequest = (socket, payload = null) => {
+  if (!payload) {
+    payload = {
+      orderID: chance.guid(),
       partName: chance.name(),
       partQuantity: chance.integer({ min: 1, max: 100 }),
       partID: chance.guid(),
     };
   }
 
-  let payload = {
-    event: 'NEW_PART_REQUEST',
-    messageId: order.id,
-    order,
-  };
-
-  console.log(`Worker: Order request for ${payload.order.id} submitted.`);
+  socket.emit('JOIN', payload.orderID);
   socket.emit('NEW_PART_REQUEST', payload);
+
+  console.log(`Worker: Order request for ${payload.orderID} submitted.`);
 };
 
-module.exports = { partRequest };
+const partRequestFilled = (payload) => {
+  console.log(`Worker: Order request for ${payload.orderID} filled.`);
+};
+
+
+module.exports = { partRequest, partRequestFilled };
