@@ -34,104 +34,16 @@ jjmr.on('connection', (socket) => {
     socket.broadcast.emit('NEW_PART_REQUEST', payload);
   });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // socket.on('PART_REQUEST_REVIEWED', (payload) => {
-  //   socket.broadcast.emit('PART_REQUEST_REVIEWED', payload)
-  // });
-
-  // socket.on('PRODUCT_PICKED_UP', (payload) => {
-  //   socket.broadcast.emit('PRODUCT_PICKED_UP', payload)
-  // });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  socket.on('MESSAGE', (payload) => {
-    console.log('SERVER: Message event', payload);
-
-    // manage queue
-    // messageQueue is the single queue for the entire system
-    // current queue will be nested within and the specific queue for our room (flowers or widgets)
-    let currentQueue = messageQueue.read(payload.queueId);
-    if (!currentQueue) {
-      let queueKey = messageQueue.store(payload.queueId, new Queue());
-      currentQueue = messageQueue.read(queueKey);
-      // first time currentQueue = {};
-    }
-    currentQueue.store(payload.messageId, payload);
-
-    socket.broadcast.emit('MESSAGE', payload);
+  socket.on('PART_REQUEST_REVIEWED', (payload) => {
+    socket.broadcast.emit('PART_REQUEST_REVIEWED', payload);
   });
 
-  socket.on('RECEIVED', (payload) => {
-    console.log('Server RECEIVED event', payload);
-    // maybe I just want to send queue data to a single room:  
-    // ie. flowers or widgets
-    // socket.to(payload.queueId).emit('RECEIVED', payload);
-    //this might be useful?  maybe?
-    let currentQueue = messageQueue.read(payload.queueId);
-    if (!currentQueue) {
-      throw new Error('we have messages but no queue');
-    }
-
-    let message = currentQueue.remove(payload.messageId);
-
-    socket.broadcast.emit('RECEIVED', message);
+  socket.on('PRODUCT_PICKED_UP', (payload) => {
+    socket.broadcast.emit('PRODUCT_PICKED_UP', payload);
   });
-
-  socket.on('GET-MESSAGES', (payload) => {
-    console.log('attempting to get messages');
-    let currentQueue = messageQueue.read(payload.queueId);
-    if (currentQueue && currentQueue.data) {
-      Object.keys(currentQueue.data).forEach(messageId => {
-        socket.emit('MESSAGE', currentQueue.read(messageId));
-      });
-
-    }
+  socket.on('PARTS_DELIVERED', (payload) => {
+    socket.broadcast.emit('PARTS_DELIVERED', payload);
   });
-
 });
 
 
