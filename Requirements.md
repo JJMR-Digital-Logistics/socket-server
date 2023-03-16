@@ -53,7 +53,7 @@
 
 ## Data Flow
 
-![Data Flow UML](./401%20Midterm%20Project%20UML.jpg)
+![Data Flow UML](./Assets/401-Midterm-Project.jpg)
 
 ## Non-Functional Requirements (301 & 401 only)
 
