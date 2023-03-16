@@ -30,20 +30,32 @@ jjmr.on('connection', (socket) => {
     console.log('these are the rooms', socket.adapter.rooms);
   });
 
-  socket.on('NEW_PART_REQUEST', (payload) => {
-    socket.broadcast.emit('NEW_PART_REQUEST', payload);
+  socket.on('STEP1', (payload) => {
+    socket.broadcast.emit('STEP2', payload);
   });
 
-  socket.on('PART_REQUEST_REVIEWED', (payload) => {
-    socket.broadcast.emit('PART_REQUEST_REVIEWED', payload);
+  socket.on('STEP3', (payload) => {
+    socket.broadcast.emit('STEP4', payload);
   });
 
-  socket.on('PRODUCT_PICKED_UP', (payload) => {
-    socket.broadcast.emit('PRODUCT_PICKED_UP', payload);
+  socket.on('STEP5', (payload) => {
+    socket.broadcast.emit('STEP6', payload);
   });
-  socket.on('PARTS_DELIVERED', (payload) => {
-    socket.broadcast.emit('PARTS_DELIVERED', payload);
+  
+  socket.on('STEP7', (payload) => {
+    socket.broadcast.emit('STEP8', payload);
   });
+
+  // socket.on('PART_REQUEST_REVIEWED', (payload) => {
+  //   socket.broadcast.emit('PART_REQUEST_REVIEWED', payload);
+  // });
+
+  // socket.on('PRODUCT_PICKED_UP', (payload) => {
+  //   socket.broadcast.emit('PRODUCT_PICKED_UP', payload);
+  // });
+  // socket.on('PARTS_DELIVERED', (payload) => {
+  //   socket.broadcast.emit('PARTS_DELIVERED', payload);
+  // });
 });
 
 

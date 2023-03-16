@@ -4,7 +4,7 @@
   "description": "* It's an Inventory Management System that utilizes full CRUD functionality, RBAC for users, Enquirer to provide a prompt for users to search through inventory, and Socket.io for users to request more inventory.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node Socket-Server/index.js",
     "lint": "eslint **/*.js",
     "test": "NODE_ENV=test jest --verbose --coverage",
     "test-watch": "NODE_ENV=test jest --watchAll --verbose --coverage",
