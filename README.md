@@ -11,6 +11,8 @@
 ### Links and Resources
 
 - [GitHub Project Board](https://github.com/orgs/JJMR-Digital-Logistics/projects/1) 
+- [Deployed Web Page](https://jjmr-socket.onrender.com)
+- [Miro Board](https://miro.com/app/board/uXjVMetNjHk=/)
 
 ### Setup
 
