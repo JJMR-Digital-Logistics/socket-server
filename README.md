@@ -35,7 +35,7 @@
 
 #### UML
 
-![UML](./Assets/401%20Midterm%20Project%20UML.jpg)
+![UML](./Assets/401-Midterm-Project.jpg)
 
 #### Database Schema Diagram
 
